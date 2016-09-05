@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Simple ToDo List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>About</h1>
+<p>A simple todo list app built using Java 8, Spring Boot, Thyme Leaf, MariaDB .</p></br>
+<p>Here are the functional requirements of the application:</p>
+<ul>
+    <li>The user must be able to enter a new, active task</li>
+    <li>Tasks entered must be displayed to the user in an acceptable format (for example: a list or a table)</li>
+    <li>The user must be able to mark an active task as ‘Complete’</li>
+    <li>The user must be able to change a completed task back to ‘Active’</li>
+    <li>The user must be able to delete an individual task</li>
+    <li>The user must be able to delete all completed tasks in a single action</li>
+    <li>The user must be able to toggle between showing all, only active, or only completed tasks</li>
+    <li>Completed tasks should be shown differently than active ones</li>
+    <li>The total number of active tasks should be displayed to the user</li>
+</ul>
+<h4>Configurations</h4>
+<p>Open the application.properties file and set your own configurations for the database connection.</p>
+<h4>Usage</h4>
+<p>Run the application and go on http://localhost:8080</p>
+<h4>DB Script</h4>
+<p>Create table `toDoList`.`toDo`(
+    `id` int(3) NOT NULL AUTO_INCREMENT,
+    `description` VARCHAR(254) NOT NULL,
+    `active` tinyint(1) not null default 1,
+    primary key (`id`)
+    )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+</p>
+</body>
+</html>

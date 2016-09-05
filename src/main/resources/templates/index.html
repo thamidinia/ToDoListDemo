@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ToDo List</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="/css/toDoStyleSheet.css" th:href="@{/css/toDoStyleSheet.css}"/>
+</head>
+<body >
+<div class="header">
+    <h2> you've got <span class="emphasis" th:text="${numOfActiveTasks}"></span> things to do</h2>
+</div>
+<div>
+<span style="display:inline-block;">
+    <form th:action="@{/deleteAllCompletedTasks}" th:object="${todolist}" method="post">
+        <button type="submit">Delete All Completed Tasks</button>
+    </form>
+</span>
+<span style="display:inline-block;">
+    <form th:action="@{/}" th:object="${todolist}" method="get">
+        <button type="submit" >View All Tasks</button>
+    </form>
+</span>
+<span style="display:inline-block;">
+    <form th:action="@{/showCompletedTasks}" th:object="${todolist}" method="get">
+        <button type="submit" >View Completed Tasks</button>
+     </form>
+</span>
+<span style="display:inline-block;">
+    <form th:action="@{/showActiveTasks}" th:object="${todolist}" method="get">
+            <button type="submit" >View Active Tasks</button>
+     </form>
+</span>
+</div>
+<div th:unless="${ #lists.isEmpty(todolist) }">
+    <table>
+    <tr th:each="todo : ${todolist}" th:class="${!todo.active}? 'checked' : 'active'">
+        <td th:text="${todo.description}" style="width:60%"></td>
+        <form method="POST"  th:action="@{/edit}">
+            <td style="width:20%; float:right">
+                <input type="hidden" name="todoId" id="todoId" th:value="${todo.id}" />
+                <button type="submit" name="action" value="update" th:if="${todo.active}== true">complete</button>
+                <button type="submit" name="action" value="update" th:if="${todo.active} == false">Activate</button>
+            </td>
+            <td style="width:20%">
+                <input type="hidden" name="todoId" id="todoId" th:value="${todo.id}" />
+                <button type="submit" name="action" value="delete">Delete</button>
+            </td>
+        </form>
+    </tr>
+    </table>
+</div>
+<div th:if="${ #lists.isEmpty(todolist) }">
+    <p>You have no task</p>
+</div>
+
+<table>
+<tr>
+    <td>
+    <form th:action="@{/create}" th:object="${todo}" method="post">
+        <input type="text" name="description" placeholder="Description..."></input>
+        <input type="submit" value="Add New Task" class="submitBtn"> </input>
+    </form>
+    </td>
+</tr>
+</table>
+</body>
+</html>
