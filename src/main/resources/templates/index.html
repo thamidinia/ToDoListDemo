@@ -1,13 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>ToDo List</title>
+    <title>ToDo List Demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="/css/toDoStyleSheet.css" th:href="@{/css/toDoStyleSheet.css}"/>
 </head>
 <body >
 <div class="header">
-    <h2> you've got <span class="emphasis" th:text="${numOfActiveTasks}"></span> things to do</h2>
+    <h2> you've got <span class="emphasis" th:text="${numOfActiveTasks}"></span> thing(s) to do</h2>
 </div>
 <div>
 <span style="display:inline-block;">
@@ -52,7 +52,6 @@
 <div th:if="${ #lists.isEmpty(todolist) }">
     <p>You have no task</p>
 </div>
-
 <table>
 <tr>
     <td>
